@@ -1,0 +1,9 @@
+variavel,status,analises,justificativa
+Corticoide,Realizada,IMC; FINDRISC,Campo binário completo; grupos com 45 e 30 pacientes.
+Atividade física,Realizada,IMC; FINDRISC,Status atual derivado por regra explícita; grupos com 42 e 33 pacientes.
+Imunobiológico,Não realizada,,"63 valores presentes, 12 ausentes (16,0%) e 29 categorias textuais semanticamente inconsistentes; não há agrupamento clínico binário confiável sem adjudicação."
+Tabagismo,Não realizada,,"17 categorias textuais misturam nunca fumou, exposição passiva, uso atual e cessação; grupos atuais são muito pequenos."
+Etilismo,Não realizada,,"25 categorias textuais sem separação padronizada entre uso atual, frequência e uso passado."
+Renda,Não realizada,,"Quatro estratos; o menor contém apenas 4 pacientes, insuficiente para comparação multigrupo estável."
+Escolaridade,Não realizada,,"Sete estratos, incluindo grupos com 1 e 3 pacientes; comparação multigrupo seria instável."
+Tempo de doença,Não realizada,,"73 valores presentes em 55 formatos que misturam duração, ano-calendário e idade ao diagnóstico; unidade não padronizada."

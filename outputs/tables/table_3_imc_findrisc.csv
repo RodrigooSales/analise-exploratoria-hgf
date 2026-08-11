@@ -1,0 +1,2 @@
+n,rho_spearman,ic95_inferior,ic95_superior,p_valor,metodo_ic,bootstrap,random_state
+72,0.7044568459379132,0.5613847929036577,0.8077108647206857,5.026909868083026e-12,Bootstrap percentil pareado,10000,42

@@ -1,0 +1,3 @@
+cenario,n_elegivel,n,rho,ic95_inferior,ic95_superior,p_valor,metodo_ic,bootstrap,random_state
+Todos os pacientes com pares válidos,75,72,0.7044568459379132,0.5613847929036577,0.8077108647206857,5.026909868083026e-12,Bootstrap percentil pareado,10000,42
+Apenas um diagnóstico autoimune,68,65,0.7635960582356662,0.6433892514872337,0.8431783830270378,1.395473962759173e-13,Bootstrap percentil pareado,10000,42

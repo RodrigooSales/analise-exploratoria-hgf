@@ -1,0 +1,33 @@
+variavel,n_valido,n_ausente,percentual_ausente
+Cod,75,0,0.0
+nome,75,0,0.0
+estado civil,75,0,0.0
+escolaridade,75,0,0.0
+ocupação ,75,0,0.0
+renda mensal familiar,75,0,0.0
+diagnóstico principal,75,0,0.0
+tempo de diagnóstico,73,2,2.67
+usa ou usou corticoide recente?,75,0,0.0
+faz uso de medicamento imunobiologico? ,63,12,16.0
+tempo de medicamento,35,40,53.33
+circunferência cervical,75,0,0.0
+CT,24,51,68.0
+LDL,24,51,68.0
+HDL,23,52,69.33
+VRDL,1,74,98.67
+TG,23,52,69.33
+Glicemia,22,53,70.67
+hbA1c,22,53,70.67
+PA,5,70,93.33
+Altura,0,75,100.0
+Peso,0,75,100.0
+IMC,73,2,2.67
+CA,73,2,2.67
+comorbidade associada/medicamento,69,6,8.0
+tabagismo,75,0,0.0
+etilismo,75,0,0.0
+ativ física?,75,0,0.0
+resultado do findrisk,74,1,1.33
+resultado BASDAI,0,75,100.0
+resultado SLICC,0,75,100.0
+resultado DAS-28,0,75,100.0

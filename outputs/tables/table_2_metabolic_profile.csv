@@ -1,0 +1,6 @@
+variavel,n_valido,media,moda,desvio_padrao,mediana,p25,p75,n,percentual
+IMC (kg/m²),73,28.72,29,5.5,27.94,24.62,32.3,,
+Excesso de peso (IMC ≥ 25 kg/m²),73,,,,,,,52,71.23
+Obesidade (IMC ≥ 30 kg/m²),73,,,,,,,26,35.62
+FINDRISC (pontos),74,13.76,9,6.25,14.0,9.0,19.0,,
+FINDRISC ≥ 15 pontos,74,,,,,,,35,47.3

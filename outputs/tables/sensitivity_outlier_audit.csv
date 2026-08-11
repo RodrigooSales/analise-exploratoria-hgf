@@ -1,0 +1,5 @@
+variavel,extremo,valor,presente_no_bruto,transformacao_consistente,faixa_plausivel,limite_iqr_inferior,limite_iqr_superior,outlier_iqr,classificacao,excluido,justificativa
+IMC,Mínimo,17.5,True,True,True,13.100000000000007,43.81999999999999,False,Valor extremo verdadeiro,False,"Valor confirmado no bruto, transformação consistente e faixa válida; mantido."
+IMC,Máximo,41.1,True,True,True,13.100000000000007,43.81999999999999,False,Valor extremo verdadeiro,False,"Valor confirmado no bruto, transformação consistente e faixa válida; mantido."
+FINDRISC,Mínimo,2.0,True,True,True,-6.0,34.0,False,Valor extremo verdadeiro,False,"Valor confirmado no bruto, transformação consistente e faixa válida; mantido."
+FINDRISC,Máximo,24.0,True,True,True,-6.0,34.0,False,Valor extremo verdadeiro,False,"Valor confirmado no bruto, transformação consistente e faixa válida; mantido."

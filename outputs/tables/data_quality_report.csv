@@ -1,0 +1,33 @@
+variavel,tipo_original,tipo_final,n_valido,n_missing,percentual_missing,minimo,maximo,n_categorias,observacoes
+Cod,int64,não alterado (int64),75,0,0.0,1.0,75.0,75,Nenhuma inconsistência automática identificada.
+nome,str,não alterado (str),75,0,0.0,,,75,Identificador protegido; valores nunca exibidos ou exportados. 3 valor(es) com espaço antes/depois.
+estado civil,str,não alterado (str),75,0,0.0,,,4,Nenhuma inconsistência automática identificada.
+escolaridade,str,não alterado (str),75,0,0.0,,,7,Nenhuma inconsistência automática identificada.
+ocupação ,str,não alterado (str),75,0,0.0,,,41,Cabeçalho contém espaço excedente. 12 valor(es) com espaço antes/depois. 5 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação.
+renda mensal familiar,str,não alterado (str),75,0,0.0,,,4,Nenhuma inconsistência automática identificada.
+diagnóstico principal,str,não alterado (str),75,0,0.0,,,14,11 valor(es) com espaço antes/depois. Há registros com diagnósticos múltiplos; preservar o original na limpeza.
+tempo de diagnóstico,str,não alterado (str),73,2,2.67,,,55,"1 valor(es) com espaço antes/depois. Campo heterogêneo mistura durações, anos e texto livre."
+usa ou usou corticoide recente?,bool,não alterado (bool),75,0,0.0,,,2,Nenhuma inconsistência automática identificada.
+faz uso de medicamento imunobiologico? ,str,não alterado (str),63,12,16.0,,,33,Cabeçalho contém espaço excedente. 10 valor(es) com espaço antes/depois. 4 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação. Campo mistura resposta sim/não e nomes de medicamentos.
+tempo de medicamento,str,não alterado (str),35,40,53.33,,,16,Missing relevante (≥20%). 1 valor(es) com espaço antes/depois.
+circunferência cervical,float64,não alterado (float64),75,0,0.0,30.0,110.0,15,1 possível(is) valor(es) biologicamente implausível(is); revisar na limpeza.
+CT,str,não alterado (str),24,51,68.0,123.0,288.0,22,Missing relevante (≥20%). 1 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float.
+LDL,str,não alterado (str),24,51,68.0,59.0,185.0,23,Missing relevante (≥20%). 6 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float.
+HDL,str,não alterado (str),23,52,69.33,33.0,83.0,18,Missing relevante (≥20%). 1 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float.
+VRDL,str,não alterado (str),1,74,98.67,20.4,20.4,1,Missing relevante (≥20%). 1 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float. Confirmar se o cabeçalho pretendido é VLDL.
+TG,str,não alterado (str),23,52,69.33,59.0,314.0,22,Missing relevante (≥20%). 2 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float.
+Glicemia,str,não alterado (str),22,53,70.67,72.0,142.0,18,Missing relevante (≥20%). 1 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float.
+hbA1c,str,não alterado (str),22,53,70.67,5.0,590.0,13,Missing relevante (≥20%). 17 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float. 1 possível(is) valor(es) biologicamente implausível(is); revisar na limpeza.
+PA,str,não alterado (str),5,70,93.33,,,5,Missing relevante (≥20%). Pressão arterial registrada como texto composto e com alta ausência.
+Altura,float64,não alterado (float64),0,75,100.0,,,0,Variável completamente vazia entre pacientes válidos.
+Peso,float64,não alterado (float64),0,75,100.0,,,0,Variável completamente vazia entre pacientes válidos.
+IMC,str,não alterado (str),73,2,2.67,17.5,41.1,65,59 valor(es) com vírgula decimal. Variável numérica armazenada como texto; tipo sugerido: float. Não é possível conferir o cálculo do IMC: Altura e Peso estão 100% ausentes.
+CA,float64,não alterado (float64),73,2,2.67,71.0,126.0,38,Nenhuma inconsistência automática identificada.
+comorbidade associada/medicamento,str,não alterado (str),69,6,8.0,,,55,11 valor(es) com espaço antes/depois. 2 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação. Campo livre mistura múltiplas condições e medicamentos.
+tabagismo,str,não alterado (str),75,0,0.0,,,20,16 valor(es) com espaço antes/depois. 3 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação. Campo mistura status atual e histórico de exposição.
+etilismo,str,não alterado (str),75,0,0.0,,,27,"19 valor(es) com espaço antes/depois. 3 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação. Campo mistura status atual, frequência e histórico."
+ativ física?,str,não alterado (str),75,0,0.0,,,39,"10 valor(es) com espaço antes/depois. 2 variante(s) categórica(s) diferem apenas por caixa/espaços/acentuação. Campo mistura status, modalidade, frequência e duração."
+resultado do findrisk,str,não alterado (str),74,1,1.33,2.0,24.0,28,Variável numérica armazenada como texto; tipo sugerido: inteiro. Pontuação extraível em 74 registro(s); 9 têm rótulo textual e 3 rótulo(s) divergem da classificação pela pontuação. Cabeçalho usa 'findrisk'; padronizar posteriormente para FINDRISC.
+resultado BASDAI,float64,não alterado (float64),0,75,100.0,,,0,Variável completamente vazia entre pacientes válidos.
+resultado SLICC,float64,não alterado (float64),0,75,100.0,,,0,Variável completamente vazia entre pacientes válidos.
+resultado DAS-28,float64,não alterado (float64),0,75,100.0,,,0,Variável completamente vazia entre pacientes válidos.

@@ -1,0 +1,65 @@
+secao,variavel,categoria,n_valido,n_ausente,n,percentual,media,moda,desvio_padrao,mediana,p25,p75,minimo,maximo,observacoes
+Sociodemográficas,Estado civil,Solteiro,75,0,38.0,50.67,,,,,,,,,
+Sociodemográficas,Estado civil,Casado,75,0,26.0,34.67,,,,,,,,,
+Sociodemográficas,Estado civil,Viúvo,75,0,6.0,8.0,,,,,,,,,
+Sociodemográficas,Estado civil,Divorciado,75,0,5.0,6.67,,,,,,,,,
+Sociodemográficas,Escolaridade,Ensino fundamental incompleto,75,0,21.0,28.0,,,,,,,,,
+Sociodemográficas,Escolaridade,Ensino médio completo,75,0,19.0,25.33,,,,,,,,,
+Sociodemográficas,Escolaridade,Ensino fundamental completo,75,0,15.0,20.0,,,,,,,,,
+Sociodemográficas,Escolaridade,Ensino médio incompleto,75,0,9.0,12.0,,,,,,,,,
+Sociodemográficas,Escolaridade,Superior completo,75,0,7.0,9.33,,,,,,,,,
+Sociodemográficas,Escolaridade,Superior incompleto,75,0,3.0,4.0,,,,,,,,,
+Sociodemográficas,Escolaridade,Sem instrução,75,0,1.0,1.33,,,,,,,,,
+Sociodemográficas,Renda mensal familiar,1 a 2 salários mínimos,75,0,32.0,42.67,,,,,,,,,
+Sociodemográficas,Renda mensal familiar,Até 1 salário mínimo,75,0,28.0,37.33,,,,,,,,,
+Sociodemográficas,Renda mensal familiar,2 a 3 salários mínimos,75,0,11.0,14.67,,,,,,,,,
+Sociodemográficas,Renda mensal familiar,Acima de 3 salários mínimos,75,0,4.0,5.33,,,,,,,,,
+Sociodemográficas,Ocupação,Outras ocupações,75,0,34.0,45.33,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Sociodemográficas,Ocupação,Desempregada,75,0,18.0,24.0,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Sociodemográficas,Ocupação,Aposentada,75,0,8.0,10.67,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Sociodemográficas,Ocupação,Dona de casa,75,0,8.0,10.67,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Sociodemográficas,Ocupação,Aposentado,75,0,4.0,5.33,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Sociodemográficas,Ocupação,Costureira,75,0,3.0,4.0,,,,,,,,,Categorias com n<3 agrupadas por privacidade.
+Clínicas,Diagnóstico,Lúpus eritematoso,75,0,26.0,34.67,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Artrite reumatoide,75,0,23.0,30.67,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Espondiloartrite,75,0,14.0,18.67,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,"Lúpus eritematoso, Fibromialgia",75,0,2.0,2.67,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Doença de BC,75,0,2.0,2.67,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,"Osteoporose, Arterite temporal, Artrose",75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,"Artrite reumatoide, Artrose, Fibromialgia, Lúpus eritematoso",75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,"Artrite reumatoide, Artrose",75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Artrose,75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,"Fibromialgia, Artrose, Osteoporose",75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Osteoporose,75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Síndrome antifosfolipídica (SAF),75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Diagnóstico,Em descoberta,75,0,1.0,1.33,,,,,,,,,Uso exclusivamente descritivo; diagnósticos múltiplos preservados.
+Clínicas,Tempo de doença,Informação registrada,73,2,73.0,100.0,,,,,,,,,"Campo heterogêneo, sem unidade padronizada; não resumido quantitativamente."
+Clínicas,Uso de corticoide,Não,75,0,45.0,60.0,,,,,,,,,
+Clínicas,Uso de corticoide,Sim,75,0,30.0,40.0,,,,,,,,,
+Clínicas,Uso de imunobiológico,Não,63,12,29.0,46.03,,,,,,,,,Somente respostas explícitas Sim/Não foram categorizadas.
+Clínicas,Uso de imunobiológico,Resposta detalhada/não padronizada,63,12,28.0,44.44,,,,,,,,,Somente respostas explícitas Sim/Não foram categorizadas.
+Clínicas,Uso de imunobiológico,Sim,63,12,6.0,9.52,,,,,,,,,Somente respostas explícitas Sim/Não foram categorizadas.
+Clínicas,Comorbidades/medicamentos,Informação registrada,69,6,69.0,100.0,,,,,,,,,Campo livre; frequência de condições específicas não inferida.
+Clínicas,Tabagismo,Não,75,0,59.0,78.67,,,,,,,,,Campo mistura estado atual e histórico.
+Clínicas,Tabagismo,Resposta detalhada/não padronizada,75,0,16.0,21.33,,,,,,,,,Campo mistura estado atual e histórico.
+Clínicas,Etilismo,Não,75,0,47.0,62.67,,,,,,,,,"Campo mistura estado atual, frequência e histórico."
+Clínicas,Etilismo,Resposta detalhada/não padronizada,75,0,27.0,36.0,,,,,,,,,"Campo mistura estado atual, frequência e histórico."
+Clínicas,Etilismo,Sim,75,0,1.0,1.33,,,,,,,,,"Campo mistura estado atual, frequência e histórico."
+Clínicas,Atividade física,Resposta detalhada/não padronizada,75,0,37.0,49.33,,,,,,,,,"Campo mistura estado, modalidade, frequência e duração."
+Clínicas,Atividade física,Não,75,0,35.0,46.67,,,,,,,,,"Campo mistura estado, modalidade, frequência e duração."
+Clínicas,Atividade física,Sim,75,0,3.0,4.0,,,,,,,,,"Campo mistura estado, modalidade, frequência e duração."
+Antropométricas,Categoria de IMC,Sobrepeso,73,2,26.0,35.62,,,,,,,,,
+Antropométricas,Categoria de IMC,Peso normal,73,2,18.0,24.66,,,,,,,,,
+Antropométricas,Categoria de IMC,Obesidade grau I,73,2,15.0,20.55,,,,,,,,,
+Antropométricas,Categoria de IMC,Obesidade grau II,73,2,9.0,12.33,,,,,,,,,
+Antropométricas,Categoria de IMC,Baixo peso,73,2,3.0,4.11,,,,,,,,,
+Antropométricas,Categoria de IMC,Obesidade grau III,73,2,2.0,2.74,,,,,,,,,
+Metabólicas,Categoria FINDRISC,Alto,74,1,20.0,27.03,,,,,,,,,Classificação recalculada pela pontuação.
+Metabólicas,Categoria FINDRISC,Leve/moderado,74,1,18.0,24.32,,,,,,,,,Classificação recalculada pela pontuação.
+Metabólicas,Categoria FINDRISC,Muito alto,74,1,15.0,20.27,,,,,,,,,Classificação recalculada pela pontuação.
+Metabólicas,Categoria FINDRISC,Moderado,74,1,11.0,14.86,,,,,,,,,Classificação recalculada pela pontuação.
+Metabólicas,Categoria FINDRISC,Baixo risco,74,1,10.0,13.51,,,,,,,,,Classificação recalculada pela pontuação.
+Antropométricas,IMC (kg/m²),Resumo quantitativo,73,2,,,28.72,29,5.5,27.94,24.62,32.3,17.5,41.1,Nenhum valor extremo foi excluído.
+Antropométricas,Circunferência abdominal (cm),Resumo quantitativo,73,2,,,94.97,79; 98; 108,12.18,96.0,86.0,104.0,71.0,126.0,Distribuição multimodal (3 modas).
+Antropométricas,Circunferência cervical (cm),Resumo quantitativo,75,0,,,37.36,35,9.21,36.0,34.0,39.0,30.0,110.0,Valor máximo requer conferência; nenhum valor foi excluído.
+Metabólicas,FINDRISC (pontos),Resumo quantitativo,74,1,,,13.76,9,6.25,14.0,9.0,19.0,2.0,24.0,Categoria recalculada exclusivamente pela pontuação.
