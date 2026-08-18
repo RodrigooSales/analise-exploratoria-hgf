@@ -21,6 +21,42 @@ O arquivo original possuía 100 linhas, mas somente 75 correspondiam a pacientes
 
 Foi observada associação positiva entre IMC e FINDRISC: pacientes com maiores valores de IMC tenderam a apresentar maiores escores FINDRISC. Isso não significa que o IMC tenha causado o aumento do FINDRISC. Além de o estudo ser observacional, o próprio IMC é um dos componentes usados no cálculo do FINDRISC, fazendo com que parte da associação seja esperada pela construção matemática do escore.
 
+## IMC dos pacientes com doenças autoimunes
+
+Os resultados foram calculados no notebook [`08_imc_descriptive_statistics.ipynb`](notebooks/08_imc_descriptive_statistics.ipynb), considerando somente pacientes com pelo menos uma doença autoimune explicitamente registrada. Dos 69 pacientes elegíveis, 67 possuíam IMC válido e dois apresentavam IMC ausente.
+
+| Medida | Resultado |
+|---|---:|
+| Pacientes com doença autoimune explícita | 69 |
+| IMC válido | 67 |
+| IMC ausente | 2 |
+| Média | 28,72 kg/m² |
+| Moda | 29,00 kg/m² |
+| Mediana | 28,50 kg/m² |
+| Desvio-padrão amostral | 5,64 kg/m² |
+| P25 | 24,50 kg/m² |
+| P75 | 32,35 kg/m² |
+
+Os seis registros restantes do dataset não foram incluídos porque não possuíam doença autoimune explícita ou apresentavam diagnóstico incerto.
+
+## FINDRISC dos pacientes com doenças autoimunes
+
+Os resultados foram calculados no notebook [`09_findrisc_descriptive_statistics.ipynb`](notebooks/09_findrisc_descriptive_statistics.ipynb), considerando somente pacientes com pelo menos uma doença autoimune explicitamente registrada. Dos 69 pacientes elegíveis, 68 possuíam FINDRISC válido e um apresentava o escore ausente.
+
+| Medida | Resultado |
+|---|---:|
+| Pacientes com doença autoimune explícita | 69 |
+| FINDRISC válido | 68 |
+| FINDRISC ausente | 1 |
+| Média | 13,65 pontos |
+| Moda | 9 pontos |
+| Mediana | 13,50 pontos |
+| Desvio-padrão amostral | 6,19 pontos |
+| P25 | 9,00 pontos |
+| P75 | 19,00 pontos |
+
+O paciente com FINDRISC ausente permaneceu na contagem da população autoimune, mas não participou do cálculo das estatísticas. O valor ausente não foi imputado nem convertido em zero. Os seis pacientes sem doença autoimune explícita também não foram incluídos nesta análise.
+
 ## O que são as principais variáveis
 
 ### IMC
@@ -328,7 +364,7 @@ A análise restrita aos 65 pacientes com apenas um diagnóstico autoimune explí
 
 ## Guia detalhado das figuras
 
-Todas as figuras foram exportadas em PNG a 300 DPI, sem nome, `patient_id` ou outro identificador individual. Barras resumem grupos; somente o gráfico de dispersão apresenta pontos individuais, sem rótulos que permitam reconhecer pacientes.
+Todas as figuras foram exportadas em PNG a 300 DPI, sem nome, `patient_id` ou outro identificador individual. As Figuras 3, 5, 6, 7 e 8 apresentam pontos individuais anonimizados, sem rótulos que permitam reconhecer pacientes.
 
 ### Figuras de auditoria e disponibilidade
 
@@ -410,6 +446,82 @@ A linha vermelha LOWESS é uma suavização visual que acompanha a tendência lo
 
 O eixo horizontal apresenta três indicadores binários e o vertical, a prevalência percentual. Os rótulos informam numerador, denominador e percentual: excesso de peso, 52/73 (71,2%); obesidade, 26/73 (35,6%); FINDRISC elevado, 35/74 (47,3%). As alturas podem ser comparadas visualmente, mas os denominadores não são idênticos. A figura resume cargas diferentes de risco e não afirma que uma condição cause a outra nem que os mesmos pacientes componham integralmente todas as barras.
 
+### Figura 5 — IMC segundo registro de diabetes ou pré-diabetes
+
+![Comparação do IMC por diabetes em pacientes com doença autoimune](outputs/figures/figure_5_imc_by_diabetes.png)
+
+Esta análise utiliza somente pacientes com pelo menos uma doença autoimune explicitamente registrada. Entre os 69 pacientes elegíveis, 14 possuíam diabetes ou pré-diabetes registrado e 55 não possuíam esses registros. Conforme a regra desta análise, os quatro pacientes sem informação no campo de comorbidades foram incluídos no grupo sem diabetes registrada. Dois pacientes desse grupo não possuíam IMC; portanto, o gráfico apresenta 67 pacientes: 14 com diabetes ou pré-diabetes registrado e 53 sem esses registros.
+
+O boxplot mostra a mediana pela linha central e o intervalo P25–P75 pela caixa. Cada círculo representa um paciente anonimizado com IMC válido. Nenhum valor extremo foi removido.
+
+| Grupo | N | Média ± DP (kg/m²) | Mediana [P25–P75] (kg/m²) | Mínimo–máximo (kg/m²) |
+|---|---:|---:|---:|---:|
+| Sem diabetes ou pré-diabetes registrado | 53 | 27,78 ± 5,42 | 27,00 [24,20–30,76] | 17,50–41,10 |
+| Diabetes ou pré-diabetes registrado | 14 | 32,24 ± 5,24 | 32,10 [28,63–35,72] | 23,60–41,06 |
+
+Na amostra analisada, o grupo com diabetes ou pré-diabetes registrado apresentou mediana de IMC 5,10 kg/m² maior e média 4,46 kg/m² maior que o grupo sem esses registros. A distribuição visual está deslocada para valores mais altos no grupo registrado, embora exista sobreposição entre os intervalos interquartis.
+
+Esse resultado é exclusivamente descritivo e exploratório. Não foi realizado teste inferencial específico para essa comparação, portanto o gráfico não permite concluir significância estatística. Também não demonstra que diabetes ou pré-diabetes causou maior IMC, nem que maior IMC causou essas condições. A classificação foi extraída de um campo clínico livre: `DM`, `DM1`, `DM2`, `diabete`, `diabetes` e `pré-diabetes` foram reunidos no grupo registrado por decisão analítica. Consequentemente, “sem diabetes registrado” significa ausência desses termos ou ausência de preenchimento no campo disponível, e não confirmação clínica de que o paciente não possua a condição.
+
+### Figura 6 — IMC em artrite reumatoide e outras doenças autoimunes
+
+![Comparação do IMC entre artrite reumatoide e outras doenças autoimunes](outputs/figures/figure_6_imc_by_rheumatoid_arthritis.png)
+
+Esta comparação também utiliza exclusivamente os 69 pacientes com pelo menos uma doença autoimune explicitamente registrada. Foram identificados 25 pacientes com artrite reumatoide: 23 possuíam IMC válido e dois apresentavam IMC ausente. Os outros 44 pacientes autoimunes não possuíam artrite reumatoide registrada e todos apresentavam IMC válido. Assim, o gráfico contém 67 pacientes.
+
+O grupo de artrite reumatoide inclui todo paciente que possua esse diagnóstico como componente explícito, mesmo quando outra condição também foi registrada. O grupo de comparação reúne as demais doenças autoimunes presentes na amostra. O boxplot mostra a mediana pela linha central e o intervalo P25–P75 pela caixa; cada círculo representa um paciente anonimizado. Nenhum valor extremo foi removido.
+
+| Grupo | N | Média ± DP (kg/m²) | Mediana [P25–P75] (kg/m²) | Mínimo–máximo (kg/m²) |
+|---|---:|---:|---:|---:|
+| Outras doenças autoimunes | 44 | 28,91 ± 5,78 | 28,75 [24,55–32,85] | 17,70–41,10 |
+| Artrite reumatoide | 23 | 28,35 ± 5,48 | 27,94 [24,45–31,16] | 17,50–41,06 |
+
+Na amostra analisada, a mediana do IMC foi 0,81 kg/m² menor e a média foi 0,56 kg/m² menor no grupo com artrite reumatoide. As caixas e os pontos apresentam ampla sobreposição, indicando distribuições visualmente semelhantes. Essa proximidade descritiva não prova equivalência entre os grupos.
+
+O resultado é exploratório. Não foi realizado teste inferencial específico, intervalo de confiança da diferença ou ajuste para idade, tratamento, atividade da doença, tempo de diagnóstico ou outras características clínicas. Portanto, o gráfico não permite concluir que a artrite reumatoide esteja associada a IMC maior ou menor. Além disso, “outras doenças autoimunes” reúne diagnósticos distintos e não representa um grupo clínico homogêneo.
+
+### Figura 7 — FINDRISC em artrite reumatoide e outras doenças autoimunes
+
+![Comparação do FINDRISC entre artrite reumatoide e outras doenças autoimunes](outputs/figures/figure_7_findrisc_by_rheumatoid_arthritis.png)
+
+Esta análise utiliza exclusivamente os 69 pacientes com pelo menos uma doença autoimune explicitamente registrada. Os seis pacientes do dataset sem diagnóstico autoimune explícito não foram considerados. Entre os 25 pacientes com artrite reumatoide, todos possuíam FINDRISC válido. Entre os 44 pacientes com outras doenças autoimunes, 43 possuíam FINDRISC válido e um apresentava o escore ausente. O gráfico contém, portanto, 68 pacientes.
+
+O grupo de artrite reumatoide inclui todo paciente que possua esse diagnóstico como componente explícito, mesmo quando outra condição também foi registrada. O grupo de comparação reúne os pacientes com as demais doenças autoimunes presentes na amostra, sem artrite reumatoide registrada. O boxplot mostra a mediana pela linha central e o intervalo P25–P75 pela caixa. Cada círculo representa um paciente anonimizado com FINDRISC válido; o escore ausente não foi imputado nem convertido em zero.
+
+| Grupo | N | Média ± DP (pontos) | Mediana [P25–P75] (pontos) | Mínimo–máximo (pontos) |
+|---|---:|---:|---:|---:|
+| Outras doenças autoimunes | 43 | 13,53 ± 6,19 | 13,00 [9,00–17,50] | 2–24 |
+| Artrite reumatoide | 25 | 13,84 ± 6,33 | 14,00 [9,00–19,00] | 2–23 |
+
+Na amostra analisada, o grupo com artrite reumatoide apresentou mediana do FINDRISC 1,00 ponto maior e média 0,31 ponto maior que o grupo com outras doenças autoimunes. O P25 foi igual nos dois grupos, com 9 pontos, enquanto o P75 foi 19 pontos na artrite reumatoide e 17,50 nas demais doenças autoimunes. Apesar dessas pequenas diferenças, as caixas, amplitudes e observações individuais apresentam ampla sobreposição. Visualmente, não há separação nítida entre as distribuições.
+
+Essa proximidade é apenas uma descrição da amostra e não prova equivalência entre os grupos. Não foi realizado teste inferencial específico, intervalo de confiança da diferença ou ajuste para possíveis fatores de confusão. Idade, IMC, circunferência abdominal, atividade física e outros componentes do próprio FINDRISC podem ter distribuições diferentes entre os grupos; tratamentos, tempo de doença e outras características clínicas também podem influenciar a comparação. Assim, a figura não permite afirmar que a artrite reumatoide aumente ou reduza o FINDRISC.
+
+O FINDRISC é uma ferramenta de rastreamento do risco futuro de diabetes mellitus tipo 2, não um diagnóstico de diabetes. Além disso, o grupo “outras doenças autoimunes” combina diagnósticos distintos e não constitui um grupo clínico homogêneo. Por essas razões, a Figura 7 deve ser interpretada como uma análise descritiva e exploratória desta amostra hospitalar.
+
+### Figura 8 — FINDRISC segundo registro de diabetes ou pré-diabetes
+
+![Comparação do FINDRISC por diabetes em pacientes com doença autoimune](outputs/figures/figure_8_findrisc_by_diabetes.png)
+
+Esta comparação utiliza somente os 69 pacientes com pelo menos uma doença autoimune explicitamente registrada. Os seis pacientes sem doença autoimune explícita foram excluídos antes da formação dos grupos. Foram classificados 14 pacientes com diabetes ou pré-diabetes registrado e 55 sem esses registros. Entre os pacientes sem registro, um não possuía FINDRISC; assim, o gráfico apresenta 68 pacientes: 14 no grupo registrado e 54 no grupo sem registro.
+
+A classificação de diabetes foi obtida no campo clínico livre de comorbidades e medicamentos. Os termos `DM`, `DM1`, `DM2`, `diabete`, `diabetes` e `pré-diabetes` foram reunidos no grupo com registro. Conforme a regra analítica adotada, os quatro pacientes sem informação no campo de comorbidades integram o grupo sem diabetes registrada. Essa denominação significa ausência de registro no campo disponível, não confirmação clínica de ausência da condição.
+
+O boxplot mostra a mediana pela linha central e o intervalo P25–P75 pela caixa. Cada círculo representa um paciente anonimizado com FINDRISC válido. O único escore ausente não foi imputado nem convertido em zero.
+
+| Grupo | N | Média ± DP (pontos) | Mediana [P25–P75] (pontos) | Mínimo–máximo (pontos) | FINDRISC ≥15 |
+|---|---:|---:|---:|---:|---:|
+| Sem diabetes ou pré-diabetes registrado | 54 | 11,98 ± 5,70 | 12,00 [7,25–17,00] | 2–23 | 18/54 (33,3%) |
+| Diabetes ou pré-diabetes registrado | 14 | 20,07 ± 3,00 | 21,00 [17,50–22,75] | 15–24 | 14/14 (100,0%) |
+
+Na amostra analisada, o grupo com diabetes ou pré-diabetes registrado apresentou mediana do FINDRISC 9,00 pontos maior e média 8,09 pontos maior que o grupo sem esses registros. As caixas não se sobrepõem: a metade central dos escores ficou entre 17,50 e 22,75 pontos no grupo registrado e entre 7,25 e 17,00 pontos no grupo sem registro. Ainda existe sobreposição entre as amplitudes individuais, pois foram observados escores de 15 a 23 pontos em ambos os grupos.
+
+Todos os 14 pacientes do grupo com diabetes ou pré-diabetes registrado apresentaram FINDRISC igual ou superior a 15 pontos. No grupo sem registro, isso ocorreu em 18 dos 54 pacientes, ou 33,3%. O deslocamento visual para valores mais altos é, portanto, acentuado nesta amostra. Esses percentuais descrevem os registros disponíveis e não devem ser interpretados como estimativas para outras populações.
+
+A interpretação exige cautela especial. O FINDRISC foi concebido para rastrear risco futuro de diabetes mellitus tipo 2 e não para diagnosticar diabetes já estabelecido. Comparar seu escore com diabetes ou pré-diabetes previamente registrado cria proximidade clínica entre a variável de agrupamento e o desfecho. Além disso, sem as respostas individuais dos componentes do FINDRISC, não é possível determinar quais itens explicam a diferença observada.
+
+O resultado é descritivo e exploratório. Não foi realizado teste inferencial específico, intervalo de confiança da diferença ou ajuste para idade, IMC, circunferência abdominal, atividade física, tratamento ou outras características clínicas. A figura não demonstra que diabetes aumente o FINDRISC, nem que um FINDRISC elevado tenha causado diabetes. Também não valida o uso do escore para acompanhar pacientes com diagnóstico já registrado.
+
 ## Limitações
 
 - Tamanho amostral limitado: 75 pacientes e 72 pares na análise principal.
@@ -421,6 +533,9 @@ O eixo horizontal apresenta três indicadores binários e o vertical, a prevalê
 - Acoplamento matemático entre IMC e FINDRISC, pois o IMC compõe o escore.
 - Atividade física também compõe o FINDRISC, afetando a independência dessa análise secundária.
 - Análises secundárias exploratórias, com grupos relativamente pequenos e incerteza relevante.
+- Comparações de IMC e FINDRISC por diabetes baseadas em campo clínico livre, com pré-diabetes reunido ao diabetes, ausência de preenchimento tratada como ausência de registro e sem ajuste para possíveis fatores de confusão.
+- Comparação do FINDRISC com diabetes registrada conceitualmente próxima do desfecho e limitada pelo uso de um instrumento de rastreamento de risco futuro em pacientes que podem já possuir diagnóstico.
+- Comparações de IMC e FINDRISC por artrite reumatoide descritivas, sem ajuste para fatores de confusão e com diagnósticos heterogêneos reunidos no grupo das outras doenças autoimunes.
 
 ## Privacidade
 
@@ -430,7 +545,7 @@ Foram auditados programaticamente:
 
 - `data/processed/`;
 - tabelas e figuras em `outputs/`;
-- código e outputs renderizados dos oito notebooks;
+- código e outputs renderizados dos dez notebooks;
 - metadados das figuras;
 - logs do projeto.
 
@@ -462,6 +577,8 @@ Os notebooks devem ser executados nesta ordem:
 6. [`05_imc_findrisc_analysis.ipynb`](notebooks/05_imc_findrisc_analysis.ipynb)
 7. [`06_secondary_analysis.ipynb`](notebooks/06_secondary_analysis.ipynb)
 8. [`07_tables_and_figures.ipynb`](notebooks/07_tables_and_figures.ipynb)
+9. [`08_imc_descriptive_statistics.ipynb`](notebooks/08_imc_descriptive_statistics.ipynb)
+10. [`09_findrisc_descriptive_statistics.ipynb`](notebooks/09_findrisc_descriptive_statistics.ipynb)
 
 Execução automatizada a partir da raiz:
 
@@ -474,7 +591,9 @@ for notebook in \
   04_findrisc_analysis.ipynb \
   05_imc_findrisc_analysis.ipynb \
   06_secondary_analysis.ipynb \
-  07_tables_and_figures.ipynb
+  07_tables_and_figures.ipynb \
+  08_imc_descriptive_statistics.ipynb \
+  09_findrisc_descriptive_statistics.ipynb
 do
   jupyter nbconvert \
     --to notebook \
@@ -490,7 +609,7 @@ done
 python -m unittest discover -s tests -v
 ```
 
-A validação final possui 125 testes cobrindo limpeza, variáveis derivadas, estatística, privacidade, consistência científica, figuras, tabelas e reprodução dos principais resultados.
+A validação final possui 140 testes cobrindo limpeza, variáveis derivadas, estatística, privacidade, consistência científica, figuras, tabelas e reprodução dos principais resultados.
 
 ## Arquivos produzidos
 
@@ -528,6 +647,10 @@ A validação final possui 125 testes cobrindo limpeza, variáveis derivadas, es
 - [`figure_2_findrisc_categories.png`](outputs/figures/figure_2_findrisc_categories.png)
 - [`figure_3_imc_findrisc.png`](outputs/figures/figure_3_imc_findrisc.png)
 - [`figure_4_metabolic_profile.png`](outputs/figures/figure_4_metabolic_profile.png)
+- [`figure_5_imc_by_diabetes.png`](outputs/figures/figure_5_imc_by_diabetes.png)
+- [`figure_6_imc_by_rheumatoid_arthritis.png`](outputs/figures/figure_6_imc_by_rheumatoid_arthritis.png)
+- [`figure_7_findrisc_by_rheumatoid_arthritis.png`](outputs/figures/figure_7_findrisc_by_rheumatoid_arthritis.png)
+- [`figure_8_findrisc_by_diabetes.png`](outputs/figures/figure_8_findrisc_by_diabetes.png)
 
 ## Estrutura do código
 

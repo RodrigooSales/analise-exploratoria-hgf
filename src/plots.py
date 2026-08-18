@@ -67,6 +67,159 @@ def plot_imc_boxplot(series: pd.Series):
     return figure, axis
 
 
+def _plot_numeric_by_binary_group(
+    values: pd.Series,
+    indicator: pd.Series,
+    *,
+    value_name: str,
+    value_label: str,
+    ylabel: str,
+    group_names: dict[bool, str],
+    title: str,
+    xlabel: str,
+    context: str,
+):
+    plot_data = pd.DataFrame(
+        {
+            value_name: pd.to_numeric(values, errors="coerce"),
+            "indicator": indicator.astype("boolean"),
+        }
+    )
+    plot_data[value_name] = plot_data[value_name].replace([np.inf, -np.inf], np.nan)
+    plot_data = plot_data.dropna()
+    if set(plot_data["indicator"].astype(bool)) != {False, True}:
+        raise ValueError(
+            f"A figura requer {value_label} válido nos dois grupos de {context}."
+        )
+
+    plot_data["grupo"] = plot_data["indicator"].astype(bool).map(group_names)
+    order = list(group_names.values())
+    counts = plot_data["grupo"].value_counts()
+
+    figure, axis = plt.subplots(figsize=(8, 6))
+    sns.boxplot(
+        data=plot_data,
+        x="grupo",
+        y=value_name,
+        order=order,
+        hue="grupo",
+        palette=["#4C78A8", "#E45756"],
+        legend=False,
+        showfliers=False,
+        width=0.5,
+        ax=axis,
+    )
+    sns.stripplot(
+        data=plot_data,
+        x="grupo",
+        y=value_name,
+        order=order,
+        color="white",
+        edgecolor="0.25",
+        linewidth=0.7,
+        alpha=0.85,
+        jitter=0.15,
+        size=6,
+        ax=axis,
+    )
+    axis.set_xticks(
+        range(len(order)),
+        [f"{group}\n(n={int(counts[group])})" for group in order],
+    )
+    axis.set(
+        title=title,
+        xlabel=xlabel,
+        ylabel=ylabel,
+    )
+    axis.grid(axis="y", alpha=0.2)
+    figure.tight_layout()
+    return figure, axis
+
+
+def plot_imc_by_diabetes(
+    imc: pd.Series,
+    diabetes_registrado: pd.Series,
+):
+    """Compara o IMC segundo diabetes registrado em pacientes autoimunes."""
+    return _plot_numeric_by_binary_group(
+        imc,
+        diabetes_registrado,
+        value_name="imc",
+        value_label="IMC",
+        ylabel="IMC (kg/m²)",
+        group_names={
+            False: "Sem diabetes registrado",
+            True: "Diabetes registrado\n(inclui pré-diabetes)",
+        },
+        title="Comparação do IMC por diabetes em pacientes com doença autoimune",
+        xlabel="Situação do diabetes",
+        context="diabetes",
+    )
+
+
+def plot_findrisc_by_diabetes(
+    findrisc: pd.Series,
+    diabetes_registrado: pd.Series,
+):
+    """Compara FINDRISC segundo diabetes registrado em pacientes autoimunes."""
+    return _plot_numeric_by_binary_group(
+        findrisc,
+        diabetes_registrado,
+        value_name="findrisc",
+        value_label="FINDRISC",
+        ylabel="FINDRISC (pontos)",
+        group_names={
+            False: "Sem diabetes registrado",
+            True: "Diabetes registrado\n(inclui pré-diabetes)",
+        },
+        title="Comparação do FINDRISC por diabetes em pacientes com doença autoimune",
+        xlabel="Situação do diabetes",
+        context="diabetes",
+    )
+
+
+def plot_imc_by_rheumatoid_arthritis(
+    imc: pd.Series,
+    rheumatoid_arthritis: pd.Series,
+):
+    """Compara IMC em artrite reumatoide versus outras doenças autoimunes."""
+    return _plot_numeric_by_binary_group(
+        imc,
+        rheumatoid_arthritis,
+        value_name="imc",
+        value_label="IMC",
+        ylabel="IMC (kg/m²)",
+        group_names={
+            False: "Outras doenças autoimunes",
+            True: "Artrite reumatoide",
+        },
+        title="Comparação do IMC: artrite reumatoide e outras doenças autoimunes",
+        xlabel="Grupo de doença autoimune",
+        context="diagnóstico autoimune",
+    )
+
+
+def plot_findrisc_by_rheumatoid_arthritis(
+    findrisc: pd.Series,
+    rheumatoid_arthritis: pd.Series,
+):
+    """Compara FINDRISC em artrite reumatoide versus outras doenças autoimunes."""
+    return _plot_numeric_by_binary_group(
+        findrisc,
+        rheumatoid_arthritis,
+        value_name="findrisc",
+        value_label="FINDRISC",
+        ylabel="FINDRISC (pontos)",
+        group_names={
+            False: "Outras doenças autoimunes",
+            True: "Artrite reumatoide",
+        },
+        title="Comparação do FINDRISC: artrite reumatoide e outras doenças autoimunes",
+        xlabel="Grupo de doença autoimune",
+        context="diagnóstico autoimune",
+    )
+
+
 def plot_qq(series: pd.Series, *, title: str = "Q-Q plot"):
     """Cria Q-Q plot de uma variável numérica contra a distribuição normal."""
     values = _valid_numeric(series)

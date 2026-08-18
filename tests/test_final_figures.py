@@ -16,6 +16,10 @@ FIGURES = [
     ROOT / "outputs" / "figures" / "figure_2_findrisc_categories.png",
     ROOT / "outputs" / "figures" / "figure_3_imc_findrisc.png",
     ROOT / "outputs" / "figures" / "figure_4_metabolic_profile.png",
+    ROOT / "outputs" / "figures" / "figure_5_imc_by_diabetes.png",
+    ROOT / "outputs" / "figures" / "figure_6_imc_by_rheumatoid_arthritis.png",
+    ROOT / "outputs" / "figures" / "figure_7_findrisc_by_rheumatoid_arthritis.png",
+    ROOT / "outputs" / "figures" / "figure_8_findrisc_by_diabetes.png",
 ]
 RAW_SHA256 = "a895b5340c856d2cd1772c8e115ed5efc20f409d3aef5ecba14da23d44da9bf4"
 
@@ -46,6 +50,10 @@ class FinalFiguresTests(unittest.TestCase):
             "plot_imc_categories",
             "plot_findrisc_categories",
             "plot_imc_findrisc",
+            "plot_imc_by_diabetes",
+            "plot_imc_by_rheumatoid_arthritis",
+            "plot_findrisc_by_rheumatoid_arthritis",
+            "plot_findrisc_by_diabetes",
             "plot_metabolic_profile",
             "save_figure",
         ]:
@@ -78,9 +86,47 @@ class FinalFiguresTests(unittest.TestCase):
             "Figura 2 gerada: distribuição das categorias FINDRISC",
             "Figura 3 gerada: IMC × FINDRISC; N = 72; rho = 0,704; IC95% 0,561 a 0,808",
             "Figura 4 gerada: perfil metabólico geral",
-            "Quatro figuras finais exportadas em PNG a 300 DPI.",
+            "Pacientes com doença autoimune explícita: 69",
+            "Diabetes/pré-diabetes registrado com IMC válido: 14",
+            "Sem diabetes/pré-diabetes registrado com IMC válido: 53",
+            "Figura 5 gerada: IMC por diabetes registrado; N = 67",
+            "Pacientes com artrite reumatoide explícita: 25",
+            "Artrite reumatoide com IMC válido: 23",
+            "Outras doenças autoimunes com IMC válido: 44",
+            "Figura 6 gerada: IMC por artrite reumatoide; N = 67",
+            "Artrite reumatoide com FINDRISC válido: 25",
+            "Outras doenças autoimunes com FINDRISC válido: 43",
+            "Figura 7 gerada: FINDRISC por artrite reumatoide; N = 68",
+            "Diabetes/pré-diabetes registrado com FINDRISC válido: 14",
+            "Sem diabetes/pré-diabetes registrado com FINDRISC válido: 54",
+            "Figura 8 gerada: FINDRISC por diabetes registrado; N = 68",
+            "Oito figuras finais exportadas em PNG a 300 DPI.",
         ]:
             self.assertIn(expected, output_text)
+
+    def test_diabetes_comparison_uses_all_autoimmune_patients(self):
+        notebook = nbformat.read(NOTEBOOK_PATH, as_version=4)
+        code = "\n".join(
+            cell.source for cell in notebook.cells if cell.cell_type == "code"
+        )
+
+        self.assertIn("count_autoimmune_diagnoses", code)
+        self.assertIn("create_diabetes_registrado", code)
+        self.assertIn("n_diagnosticos_autoimunes.ge(1)", code)
+        self.assertIn("autoimmune['diabetes_registrado'].isna().sum() == 0", code)
+        self.assertIn("findrisc_diabetes_comparison", code)
+        self.assertIn("dropna", code)
+
+    def test_rheumatoid_arthritis_comparison_uses_only_autoimmune_patients(self):
+        notebook = nbformat.read(NOTEBOOK_PATH, as_version=4)
+        code = "\n".join(
+            cell.source for cell in notebook.cells if cell.cell_type == "code"
+        )
+
+        self.assertIn("create_artrite_reumatoide_registrada", code)
+        self.assertIn("autoimmune['artrite_reumatoide']", code)
+        self.assertIn("arthritis_comparison", code)
+        self.assertIn("findrisc_arthritis_comparison", code)
 
     def test_notebook_and_outputs_preserve_privacy_and_raw_integrity(self):
         raw = pd.read_csv(RAW_PATH, dtype="string")

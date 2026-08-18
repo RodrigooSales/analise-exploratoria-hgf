@@ -135,7 +135,7 @@ class PrivacyIntegrityTests(unittest.TestCase):
 
     def test_executed_notebooks_have_no_identifiers_in_source_or_rendered_outputs(self):
         notebook_paths = sorted((ROOT / "notebooks").glob("*.ipynb"))
-        self.assertEqual(len(notebook_paths), 8)
+        self.assertEqual(len(notebook_paths), 10)
 
         for path in notebook_paths:
             with self.subTest(notebook=path.name):

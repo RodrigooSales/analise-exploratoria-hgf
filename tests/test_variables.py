@@ -8,6 +8,8 @@ from src.variables import (
     classificar_imc,
     count_autoimmune_diagnoses,
     create_atividade_fisica_atual,
+    create_artrite_reumatoide_registrada,
+    create_diabetes_registrado,
     create_excesso_peso,
     create_findrisc_alto,
     create_obesidade,
@@ -141,6 +143,49 @@ class VariableTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_create_diabetes_registrado_uses_explicit_diagnosis(self):
+        original = pd.Series(
+            [
+                "DM (Metformina)",
+                "DM2 (insulina)",
+                "Diabetes (Glifage)",
+                "Pré-diabetes (Glifage)",
+                "pré diabetes",
+                "Dislipidemia",
+                "Não",
+                None,
+                " ",
+            ]
+        )
+
+        result = create_diabetes_registrado(original)
+
+        self.assertEqual(result.dtype, pd.BooleanDtype())
+        self.assertEqual(
+            result.tolist(),
+            [True, True, True, True, True, False, False, False, False],
+        )
+        self.assertFalse(result.isna().any())
+
+    def test_create_artrite_reumatoide_registrada_uses_diagnosis_components(self):
+        diagnoses = pd.Series(
+            [
+                "Artrite reumatoide",
+                "Artrite reumatoide, Artrose",
+                "Lúpus eritematoso, Artrite reumatoide",
+                "Espondiloartrite",
+                "Lúpus eritematoso",
+                None,
+                " ",
+            ]
+        )
+
+        result = create_artrite_reumatoide_registrada(diagnoses)
+
+        self.assertEqual(result.dtype, pd.BooleanDtype())
+        self.assertEqual(result.iloc[:5].tolist(), [True, True, True, False, False])
+        self.assertTrue(result.iloc[5:].isna().all())
 
 
 if __name__ == "__main__":

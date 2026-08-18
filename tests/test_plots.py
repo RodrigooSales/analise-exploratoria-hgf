@@ -11,11 +11,15 @@ from PIL import Image
 
 from src.plots import (
     plot_findrisc_boxplot,
+    plot_findrisc_by_diabetes,
+    plot_findrisc_by_rheumatoid_arthritis,
     plot_findrisc_categories,
     plot_findrisc_distribution,
     plot_imc_boxplot,
     plot_imc_categories,
     plot_imc_distribution,
+    plot_imc_by_diabetes,
+    plot_imc_by_rheumatoid_arthritis,
     plot_imc_findrisc,
     plot_metabolic_profile,
     plot_missing_data,
@@ -119,6 +123,80 @@ class PlotTests(unittest.TestCase):
         self.assertIn("rho de Spearman = 0,70", annotation)
         self.assertIn("IC95%: 0,50 a 0,82", annotation)
         self.assertIn("N = 7", annotation)
+        self.assertIsNotNone(figure)
+
+    def test_imc_by_diabetes_plot_compares_valid_groups_with_sample_sizes(self):
+        imc = pd.Series([20, 22, 25, 28, 30, None])
+        diabetes = pd.Series(
+            [False, False, False, True, True, True],
+            dtype="boolean",
+        )
+
+        figure, axis = plot_imc_by_diabetes(imc, diabetes)
+
+        labels = [tick.get_text() for tick in axis.get_xticklabels()]
+        self.assertIn("Sem diabetes registrado\n(n=3)", labels)
+        self.assertIn("Diabetes registrado\n(inclui pré-diabetes)\n(n=2)", labels)
+        self.assertEqual(axis.get_xlabel(), "Situação do diabetes")
+        self.assertEqual(axis.get_ylabel(), "IMC (kg/m²)")
+        self.assertIn("doença autoimune", axis.get_title())
+        self.assertGreaterEqual(len(axis.collections), 2)
+        self.assertIsNotNone(figure)
+
+    def test_imc_by_rheumatoid_arthritis_plot_compares_autoimmune_groups(self):
+        imc = pd.Series([20, 22, 25, 28, 30, None])
+        rheumatoid_arthritis = pd.Series(
+            [False, False, False, True, True, True],
+            dtype="boolean",
+        )
+
+        figure, axis = plot_imc_by_rheumatoid_arthritis(imc, rheumatoid_arthritis)
+
+        labels = [tick.get_text() for tick in axis.get_xticklabels()]
+        self.assertIn("Outras doenças autoimunes\n(n=3)", labels)
+        self.assertIn("Artrite reumatoide\n(n=2)", labels)
+        self.assertEqual(axis.get_xlabel(), "Grupo de doença autoimune")
+        self.assertEqual(axis.get_ylabel(), "IMC (kg/m²)")
+        self.assertIn("artrite reumatoide", axis.get_title().casefold())
+        self.assertGreaterEqual(len(axis.collections), 2)
+        self.assertIsNotNone(figure)
+
+    def test_findrisc_by_rheumatoid_arthritis_plot_compares_autoimmune_groups(self):
+        findrisc = pd.Series([5, 7, 9, 12, 15, None])
+        rheumatoid_arthritis = pd.Series(
+            [False, False, False, True, True, True],
+            dtype="boolean",
+        )
+
+        figure, axis = plot_findrisc_by_rheumatoid_arthritis(
+            findrisc, rheumatoid_arthritis
+        )
+
+        labels = [tick.get_text() for tick in axis.get_xticklabels()]
+        self.assertIn("Outras doenças autoimunes\n(n=3)", labels)
+        self.assertIn("Artrite reumatoide\n(n=2)", labels)
+        self.assertEqual(axis.get_xlabel(), "Grupo de doença autoimune")
+        self.assertEqual(axis.get_ylabel(), "FINDRISC (pontos)")
+        self.assertIn("artrite reumatoide", axis.get_title().casefold())
+        self.assertGreaterEqual(len(axis.collections), 2)
+        self.assertIsNotNone(figure)
+
+    def test_findrisc_by_diabetes_plot_compares_valid_groups_with_sample_sizes(self):
+        findrisc = pd.Series([5, 7, 9, 12, 15, None])
+        diabetes = pd.Series(
+            [False, False, False, True, True, True],
+            dtype="boolean",
+        )
+
+        figure, axis = plot_findrisc_by_diabetes(findrisc, diabetes)
+
+        labels = [tick.get_text() for tick in axis.get_xticklabels()]
+        self.assertIn("Sem diabetes registrado\n(n=3)", labels)
+        self.assertIn("Diabetes registrado\n(inclui pré-diabetes)\n(n=2)", labels)
+        self.assertEqual(axis.get_xlabel(), "Situação do diabetes")
+        self.assertEqual(axis.get_ylabel(), "FINDRISC (pontos)")
+        self.assertIn("doença autoimune", axis.get_title())
+        self.assertGreaterEqual(len(axis.collections), 2)
         self.assertIsNotNone(figure)
 
     def test_missing_data_plot_has_title_axes_and_percentage_unit(self):

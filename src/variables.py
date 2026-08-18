@@ -110,6 +110,41 @@ def create_atividade_fisica_atual(series: pd.Series) -> pd.Series:
     return result
 
 
+def create_diabetes_registrado(series: pd.Series) -> pd.Series:
+    """Identifica diabetes ou pré-diabetes registrado em campo clínico livre.
+
+    ``DM``, ``DM1``, ``DM2``, ``diabete`` e ``diabetes`` são positivos.
+    Pré-diabetes também é positivo conforme a regra analítica do estudo.
+    Ausências representam falta de registro e integram o grupo sem diabetes
+    registrada, sem implicar confirmação clínica de ausência da condição.
+    """
+    cleaned = clean_text_column(series)
+    return cleaned.str.contains(
+        r"\b(?:dm(?:1|2)?|diabetes?)\b",
+        case=False,
+        na=False,
+        regex=True,
+    ).astype("boolean").rename("diabetes_registrado")
+
+
+def create_artrite_reumatoide_registrada(series: pd.Series) -> pd.Series:
+    """Identifica artrite reumatoide entre componentes diagnósticos padronizados."""
+    cleaned = clean_text_column(series)
+    result = pd.Series(
+        pd.NA,
+        index=series.index,
+        dtype="boolean",
+        name="artrite_reumatoide",
+    )
+    valid = cleaned.notna()
+    result.loc[valid] = cleaned.loc[valid].str.split(",").map(
+        lambda diagnoses: any(
+            diagnosis.strip() == "Artrite reumatoide" for diagnosis in diagnoses
+        )
+    )
+    return result
+
+
 def count_autoimmune_diagnoses(series: pd.Series) -> pd.Series:
     """Conta diagnósticos autoimunes explícitos em um campo padronizado.
 
